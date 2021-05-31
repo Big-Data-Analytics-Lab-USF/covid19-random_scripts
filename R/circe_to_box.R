@@ -8,13 +8,13 @@ boxr::box_auth(client_id = "XXXXXXXXX",
                client_secret = "XXXXXXXXX")
 
 # get circe dir str
-circe_dir <- substr(getwd(), 
+circe.d <- substr(getwd(), 
                     start = nchar(getwd()) - 6, 
                     stop = nchar(getwd())
                    )
 
 # create box dir with circe dir str
-box.d <- boxr::box_dir_create(dir_name = circe_dir, 
+box.d <- boxr::box_dir_create(dir_name = circe.d, 
                               parent_dir_id = "XXXXXXXXX")
 
 # upload local dir to box in new dir

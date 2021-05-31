@@ -2,7 +2,7 @@
 library("boxr")
 library("dplyr")
 
-# setwd()
+# setwd() -- Set wd here or before loading R into envir
 # box auth
 boxr::box_auth(client_id = "XXXXXXXXX", 
                client_secret = "XXXXXXXXX")

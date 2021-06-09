@@ -18,8 +18,5 @@ box.d <- boxr::box_dir_create(dir_name = circe.d,
                               parent_dir_id = "XXXXXXXXX")
 
 # upload local dir to box in new dir
-boxr::box_push(dir_id = box.d[2], 
-               local_dir = getwd(),
-               ignore_dots = TRUE,
-               overwrite = FALSE,
-               delete = FALSE)
+boxr::box_push(dir_id = as.character(box.d[2]), 
+               local_dir = getwd())

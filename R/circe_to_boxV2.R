@@ -3,27 +3,29 @@
 # as an input and use that to create a new DIR in box, set working directory in R,
 # and upload everything in the DIR. 
 
-# Examples to use this script in CIRCE is the following in terminal enter the following
+# Here's an example on how to use this script in CIRCE. Enter the following in cmd:
 ## module load apps/R/4.0.2-el7-gcc-openblas
-## Rscript <script path> <DIR to upload>
-
+## Rscript <script_path> <DIR_to_upload>
 
 library("dplyr")
 library("boxr")
 
-
+## Script dependencies ##
 args <- commandArgs(trailingOnly = FALSE)
 fileNames_all <- args[6] #grab arguement from cmd line
 fileLocation <- fileNames_all # something weird happens but this fixes the issue
+## End Script dependencies ##
 
-
+## Box Auth ##
 boxr::box_auth(client_id = "XXXXXXXXXXXXX", # used to auth script -- create box dev account.
                client_secret = "XXXXXXXXXX")
+## End Box Auth ##
 
-box_to_circe <- function(dir_name, working_dir){ # function to upload all files in DIR
+
+## Create CIRCE to box function ##
+circe_to_box <- function(dir_name, working_dir){ # function to upload all files in DIR
   box_dir <- as.character(dir_name)
   box.d <- boxr::box_dir_create(dir_name = box_dir, parent_dir_id = "XXXXXXXXX") # parent_dir is the id in URL
-  #setwd(as.character(working_dir))
   files_in_dir <- list.files(path = working_dir,
                              full.names = T)
   for(i in 1:length(files_in_dir)){
@@ -35,15 +37,19 @@ box_to_circe <- function(dir_name, working_dir){ # function to upload all files 
     )
   }
 }
+## End Create CIRCE to box function ##
 
+
+## Function dependencies ##
 put_dir <- fileLocation
 put_name <- substr(x = fileLocation, # strip only date 'last 6 chars from str'
                    start = nchar(fileLocation) - 6,
                    stop = nchar(fileLocation))
+## End Function dependencies ##
 
 
 ## RUN FUNCTION ##
-box_to_circe(dir_name = put_name,
+circe_to_box(dir_name = put_name,
              working_dir = put_dir)
 
 

@@ -1,4 +1,4 @@
-# This script was created to copy files from USF's CIRCE directly to Box.  
+# This script was created by Dre Dyson to copy files from USF's CIRCE directly to Box.  
 library("boxr")
 library("dplyr")
 
